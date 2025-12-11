@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Ana Sayfa">
@@ -26,8 +27,8 @@ import Layout from '../layouts/Layout.astro';
             taviz vermeden hizmet veriyoruz.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="/products" class="btn-primary">Ürünlerimizi Keşfedin</a>
-            <a href="/contact" class="btn-outline">İletişime Geçin</a>
+            <a href={`${base}products`} class="btn-primary">Ürünlerimizi Keşfedin</a>
+            <a href={`${base}contact`} class="btn-outline">İletişime Geçin</a>
           </div>
         </div>
         
@@ -122,7 +123,7 @@ import Layout from '../layouts/Layout.astro';
       
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- ANAESTHESIOLOGY -->
-        <a href="/products#anaesthesiology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+        <a href={`${base}products#anaesthesiology`} class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
           <div class="h-48 relative overflow-hidden">
             <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=800&auto=format&fit=crop" alt="ANAESTHESIOLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
             <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
@@ -134,7 +135,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- CARDIOLOGY AND RADIOLOGY -->
-        <a href="/products#cardiology-radiology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+        <a href={`${base}products#cardiology-radiology`} class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
           <div class="h-48 relative overflow-hidden">
             <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=800&auto=format&fit=crop" alt="CARDIOLOGY AND RADIOLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
             <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
@@ -146,7 +147,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- DIALYSIS -->
-        <a href="/products#dialysis" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+        <a href={`${base}products#dialysis`} class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
           <div class="h-48 relative overflow-hidden">
             <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop" alt="DIALYSIS" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
             <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
@@ -158,7 +159,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- UROLOGY -->
-        <a href="/products#urology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+        <a href={`${base}products#urology`} class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
           <div class="h-48 relative overflow-hidden">
             <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop" alt="UROLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
             <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
@@ -171,7 +172,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="text-center mt-12">
-        <a href="/products" class="btn-primary">Tüm Ürünleri Görüntüle</a>
+        <a href={`${base}products`} class="btn-primary">Tüm Ürünleri Görüntüle</a>
       </div>
     </div>
   </section>
