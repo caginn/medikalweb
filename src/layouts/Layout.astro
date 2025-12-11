@@ -1,0 +1,209 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "SY Sağlık Ürünleri - Tek kullanımlık medikal ürünlerde güvenilir çözüm ortağınız" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      #google_translate_element { display: none; }
+      .goog-te-banner-frame { display: none !important; }
+      body { top: 0 !important; }
+    </style>
+    <title>{title} | SY Sağlık Ürünleri</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a href="/" class="flex items-center">
+            <img src="/logo.png" alt="SY Sağlık Ürünleri" class="h-16 w-auto" />
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a href="/" class="text-gray-700 hover:text-accent transition-colors font-medium">Ana Sayfa</a>
+            <a href="/about" class="text-gray-700 hover:text-accent transition-colors font-medium">Hakkımızda</a>
+            <a href="/products" class="text-gray-700 hover:text-accent transition-colors font-medium">Ürünlerimiz</a>
+            <a href="/contact" class="btn-primary">İletişim</a>
+            <div class="flex items-center bg-gray-100 rounded-full p-1 text-sm font-medium">
+              <button data-lang-switch="tr" class="lang-toggle-btn px-3 py-1 rounded-full bg-white text-gray-900 shadow">TR</button>
+              <button data-lang-switch="en" class="lang-toggle-btn px-3 py-1 rounded-full text-gray-700 hover:text-accent">EN</button>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4">
+          <div class="flex flex-col space-y-3">
+            <a href="/" class="text-gray-700 hover:text-accent transition-colors font-medium py-2">Ana Sayfa</a>
+            <a href="/about" class="text-gray-700 hover:text-accent transition-colors font-medium py-2">Hakkımızda</a>
+            <a href="/products" class="text-gray-700 hover:text-accent transition-colors font-medium py-2">Ürünlerimiz</a>
+            <a href="/contact" class="btn-primary text-center">İletişim</a>
+            <div class="flex items-center space-x-2 pt-2">
+              <button data-lang-switch="tr" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-200 text-gray-900">TR</button>
+              <button data-lang-switch="en" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-100 text-gray-700">EN</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="md:col-span-2">
+            <div class="mb-6">
+              <div class="bg-white rounded-lg p-2 inline-block">
+                <img src="/logo.png" alt="SY Sağlık Ürünleri" class="h-12 w-auto" />
+              </div>
+            </div>
+            <p class="text-gray-400 mb-4 max-w-md">
+              Tek kullanımlık medikal ürünlerde güvenilir çözüm ortağınız. 
+              Kalite ve hijyen standartlarında taviz vermeden hizmet veriyoruz.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Hızlı Bağlantılar</h4>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-gray-400 hover:text-accent transition-colors">Ana Sayfa</a></li>
+              <li><a href="/about" class="text-gray-400 hover:text-accent transition-colors">Hakkımızda</a></li>
+              <li><a href="/products" class="text-gray-400 hover:text-accent transition-colors">Ürünlerimiz</a></li>
+              <li><a href="/contact" class="text-gray-400 hover:text-accent transition-colors">İletişim</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-lg font-semibold mb-4">İletişim</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-start space-x-2">
+                <svg class="w-5 h-5 mt-0.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Çankaya Mah. Farabi Sokak No:24/14, 06690 Çankaya Ankara</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <span>info@sysaglik.com</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <span>0 (312) 219 82 40</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+          <p>&copy; 2024 SY Sağlık Ürünleri. Tüm hakları saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+      });
+
+      // Language Toggle Logic (Google Translate)
+      const langButtons = document.querySelectorAll('[data-lang-switch]');
+
+      function setActiveLang(lang) {
+        langButtons.forEach((btn) => {
+          const isActive = btn.getAttribute('data-lang-switch') === lang;
+          btn.classList.toggle('bg-white', isActive);
+          btn.classList.toggle('bg-gray-200', !isActive);
+          btn.classList.toggle('text-gray-900', isActive);
+          btn.classList.toggle('text-gray-700', !isActive);
+          btn.classList.toggle('shadow', isActive);
+        });
+      }
+
+      function waitForGoogleTranslate(callback, maxTries = 50) {
+        let tries = 0;
+        const interval = setInterval(() => {
+          const select = document.querySelector('select.goog-te-combo');
+          if (select) {
+            clearInterval(interval);
+            callback(select);
+          } else if (++tries >= maxTries) {
+            clearInterval(interval);
+            console.warn('Google Translate widget not found');
+          }
+        }, 100);
+      }
+
+      function applyLanguage(lang) {
+        waitForGoogleTranslate((select) => {
+          select.value = lang;
+          select.dispatchEvent(new Event('change'));
+          setActiveLang(lang);
+        });
+      }
+
+      // Initialize language buttons immediately
+      langButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang-switch');
+          if (lang) applyLanguage(lang);
+        });
+      });
+
+      // Google Translate init callback
+      window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'tr',
+            includedLanguages: 'tr,en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          'google_translate_element'
+        );
+      };
+    </script>
+    <div id="google_translate_element" class="hidden"></div>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

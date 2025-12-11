@@ -1,0 +1,764 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const categories = [
+  {
+    id: "anaesthesiology",
+    title: "ANAESTHESIOLOGY",
+    image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Anaesthesiolgy.pdf",
+    subcategories: [
+      {
+        title: "",
+        groups: [
+          {
+            name: "Epidural Anaesthesia Set",
+            products: [
+              "Epidural anaesthesia set large, advanced",
+              "Epidural anaesthesia set small",
+              "Anaesthesia set",
+              "Epidural–spinal block set, advanced",
+              "Epidural–spinal block set, small",
+              "Analgetic control set"
+            ]
+          },
+          {
+            name: "Large Vessel Catheterization Set",
+            products: [
+              "Single lumen with split cannula, pediatric",
+              "Set with single lumen cannula, Seldinger method, pediatric",
+              "Set with single lumen cannula, Seldinger method",
+              "Set with double lumen cannula, Seldinger method",
+              "Set with triple lumen cannula, Seldinger method",
+              "Set with quadruple lumen cannula, Seldinger method"
+            ]
+          },
+          {
+            name: "Thermodilution Set",
+            products: [
+              "Thermodilution set"
+            ]
+          },
+          {
+            name: "Spinal Anaesthesia",
+            products: [
+              "Spinal anaesthesia block set with pencil-point needle",
+              "Spinal anaesthesia block set with standard needle",
+              "Spinal anaesthesia needle, pencil-point type",
+              "Spinal anaesthesia needle standard (quince-point)",
+              "Lumbar puncture needle (spinal needle standard)",
+              "Biopsy needles Westcott type",
+              "Biopsy needles Madayag type (also for neurolysis)"
+            ]
+          },
+          {
+            name: "Infusion Pump Extenders",
+            products: [
+              "Infusion pump extenders",
+              "Infusion pump extenders with three-way stopcock with luer-lock hub",
+              "Infusion pump extenders dual with luer-lock hub"
+            ]
+          },
+          {
+            name: "Other Products",
+            products: [
+              "Upper respiratory tracts aspiration catheters",
+              "Pediatric polyurethane catheter for umbilical vein",
+              "Feeding catheters",
+              "Catheter for oxygen rhinoscopia administration",
+              "Central venous pressure measurement set"
+            ]
+          },
+          {
+            name: "Accessories for Anaesthesiology",
+            products: [
+              "Two-way stopcock manifolds",
+              "Three-way stopcock manifolds",
+              "One-way stopcock",
+              "Three-way stopcock",
+              "Neonatal meconium aspirator",
+              "Blocking switch",
+              "Scalpel"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "cardiology-radiology",
+    title: "CARDIOLOGY AND RADIOLOGY",
+    image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Cardiology.pdf",
+    subcategories: [
+      {
+        title: "CARDIOLOGY",
+        groups: [
+          {
+            name: "Coronary Stents",
+            products: [
+              "Coronary Bifurcation Stents (Bioss Lim, Bioss Lim C)",
+              "Coronary Stents BMS (Flexus, Colflexus)",
+              "Coronary Stents DES (Prolim, Paxel, Alex, Alex Plus)"
+            ]
+          },
+          {
+            name: "Coronary Balloon Catheters",
+            products: [
+              "Bottle coronary bifurcation angioplasty catheter",
+              "Fryderyk coronary angioplasty catheter",
+              "River coronary angioplasty catheter",
+              "River CTO coronary catheter for chronic total occlusion"
+            ]
+          },
+          {
+            name: "Valvuloplasty Balloon Catheters",
+            products: [
+              "Valver pediatric valvuloplasty catheter",
+              "Valver adult valvuloplasty catheter",
+              "Valver valvuloplasty catheter Type B"
+            ]
+          },
+          {
+            name: "Intra-Aortic Balloon Catheter",
+            products: [
+              "Intra-aortic balloon catheter set"
+            ]
+          },
+          {
+            name: "Electrophysiology",
+            products: [
+              "Temporary transvenous bipolar pacing electrode",
+              "Set to introduce endocavitary electrodes"
+            ]
+          },
+          {
+            name: "Pericardial Drainage Set",
+            products: [
+              "Pericardial drainage set"
+            ]
+          }
+        ]
+      },
+      {
+        title: "RADIOLOGY",
+        groups: [
+          {
+            name: "Peripheral Stents",
+            products: [
+              "Nefro C",
+              "Neptun",
+              "Jaguar"
+            ]
+          },
+          {
+            name: "Peripheral Balloon Catheters",
+            products: [
+              "Lovix peripheral angioplasty catheter PTA with OTW delivery system",
+              "Lovix peripheral angioplasty catheter PTA with RX delivery system"
+            ]
+          },
+          {
+            name: "Carotid Stent",
+            products: [
+              "Mer self-expanding carotid stent"
+            ]
+          },
+          {
+            name: "Neuroprotection",
+            products: [
+              "Robin neuroprotection system"
+            ]
+          },
+          {
+            name: "Introducers",
+            products: [
+              "Introducer",
+              "Long introducer",
+              "Radial artery introducer",
+              "Introducer (large sizes)",
+              "Triple access hemostasis introducer",
+              "Braided introducer (Coil)"
+            ]
+          },
+          {
+            name: "Guide Wires",
+            products: [
+              "Rider PTCA guide wires",
+              "Lunderquist guide wires",
+              "Teflon coated guide wires"
+            ]
+          },
+          {
+            name: "Diagnostic Catheters",
+            products: [
+              "For Angiography (Straight, Pigtail, Angled pigtail, N.I.H., Gensini, Multi-purpose)",
+              "Cerebral Catheters (Simmons, Mani, Headhunter, Bentson, Left carotid, Cerebral, Medullar, Vertebral, Amplatz, Newton)",
+              "Visceral Selective Catheters (Cobra, Femoral renal, Sidewinder)",
+              "Coronary Catheters (Tonnelier, Sones, Judkins right, Judkins left)"
+            ]
+          },
+          {
+            name: "Accessories for Cardiology & Radiology",
+            products: [
+              "High pressure syringes with manometer",
+              "Connector with double valve",
+              "Connector with double valve LUER",
+              "Torquer",
+              "Rotating “Y” type adapter",
+              "Guiding needle",
+              "Angiographic needles",
+              "High pressure connecting tube"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "dialysis",
+    title: "DIALYSIS",
+    image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Dialysis.pdf",
+    subcategories: [
+      {
+        title: "",
+        groups: [
+          {
+            name: "Dialysis Set",
+            products: [
+              "Single lumen, straight",
+              "Single lumen “Y”",
+              "Double lumen",
+              "Triple lumen"
+            ]
+          },
+          {
+            name: "Dialysis Catheter",
+            products: [
+              "Single lumen",
+              "Single lumen “Y”",
+              "Double lumen",
+              "Triple lumen"
+            ]
+          },
+          {
+            name: "Hemodialysis Needle & Accessories",
+            products: [
+              "Hemodialysis needle",
+              "Dialysis extender for dializator rinsing / cleaning",
+              "Dialysis extender “Y”"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "gynecology",
+    title: "GYNECOLOGY",
+    image: "https://images.unsplash.com/photo-1516574187841-693018f54746?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Gynecology.pdf",
+    subcategories: [
+      {
+        title: "",
+        groups: [
+          {
+            name: "Diagnostic Products",
+            products: [
+              "HSG catheter",
+              "Hysterosalpingography set"
+            ]
+          },
+          {
+            name: "Intrauterine Insemination",
+            products: [
+              "Frydman type catheter",
+              "Straight type catheter",
+              "Craft type catheter",
+              "Insemination catheter",
+              "Oocyte aspiration set",
+              "Oocyte aspiration needle",
+              "Embryo transfer set"
+            ]
+          },
+          {
+            name: "Other Products",
+            products: [
+              "Artificial amniotic fluid transfusion set",
+              "Endometric biopsy set"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "surgery-gastroenterology",
+    title: "SURGERY AND GASTROENTEROLOGY",
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Surgery.pdf",
+    subcategories: [
+      {
+        title: "SURGERY",
+        groups: [
+          {
+            name: "Body Cavities Puncture Set",
+            products: [
+              "One-step method drainage set",
+              "Two-step method drainage set"
+            ]
+          },
+          {
+            name: "Vascular Surgery",
+            products: [
+              "Embolectomy catheters, single lumen",
+              "Embolectomy catheters, double lumen",
+              "Aortic catheter",
+              "Vessel irrigation catheter"
+            ]
+          },
+          {
+            name: "Surgical Field Aspiration",
+            products: [
+              "Surgical field aspiration catheter with/without suction control",
+              "Surgical field aspiration catheter",
+              "Surgical field aspiration extender",
+              "Surgical wound aspiration catheter (ileostomy)"
+            ]
+          },
+          {
+            name: "Other Products",
+            products: [
+              "Redon-type aspiration catheter",
+              "Bottle for long-lasting wound aspiration",
+              "Ventral drain",
+              "Drain tubing",
+              "Thorax drainage catheter without trocar",
+              "Thorax drainage catheter with trocar"
+            ]
+          }
+        ]
+      },
+      {
+        title: "GASTROENTEROLOGY",
+        groups: [
+          {
+            name: "Products",
+            products: [
+              "Endoscopic balloon dilation catheter Troyca",
+              "Extraction and occlusion catheter",
+              "Catheter for bile ducts plasty",
+              "Dilating catheter Soehender type percutaneous",
+              "Dilating catheter Soehender type",
+              "Oral biliary ducts drainage set",
+              "Biliary prosthesis insertion with straight type prosthesis",
+              "Straight type prosthesis",
+              "Greenen type prosthesis",
+              "Pigtail type prosthesis",
+              "Zimmon type prosthesis",
+              "Duodenal tube",
+              "Gastric tube",
+              "Rectal tube",
+              "Gastric catheter",
+              "Intestinal stents catheter triple channel catheters"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "urology",
+    title: "UROLOGY",
+    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop",
+    pdf: "/catalogue/Urology.pdf",
+    subcategories: [
+      {
+        title: "",
+        groups: [
+          {
+            name: "Products",
+            products: [
+              "Nephrostomy set – nefrostom",
+              "Set for catheters exchange",
+              "Nephrostomy set – French type",
+              "Cystostomy set – cystostom",
+              "Set for stent introduction",
+              "Set for stent introduction (with changeable catheter diameter)",
+              "Stone retrieval basket “Amber”",
+              "X-ray single pigtail type",
+              "X-ray double pigtail type",
+              "Ureteral catheters",
+              "Urological catheter nelaton type",
+              "Urethral calibration"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+---
+
+<Layout title="Ürünlerimiz">
+  <!-- Page Header -->
+  <section class="relative py-16 md:py-24 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=2000&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-white/90"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center">
+        <span class="inline-block px-4 py-1 bg-red-100 text-accent rounded-full text-sm font-medium mb-4">
+          Ürünlerimiz
+        </span>
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+          Medikal Ürün Kataloğumuz
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Geniş ürün yelpazemiz ile sağlık sektörünün tüm ihtiyaçlarını karşılıyoruz. 
+          Tüm ürünlerimiz uluslararası kalite standartlarına uygundur.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <section class="py-16 bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- View 1: Category Grid -->
+      <div id="category-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+        {categories.map((category) => (
+          <div 
+            class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer category-card"
+            data-id={category.id}
+          >
+            <div class="relative h-64 overflow-hidden">
+              <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors z-10"></div>
+              <img 
+                src={category.image} 
+                alt={category.title}
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
+            </div>
+            <div class="p-8 relative">
+              <div class="absolute top-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              <h3 class="text-xl font-serif font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors">
+                {category.title}
+              </h3>
+              <div class="flex items-center text-sm text-gray-500 font-medium">
+                <span>Ürünleri İncele</span>
+                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- View 2: Product Detail (Hidden by default) -->
+      <div id="product-view" class="hidden">
+        <!-- Back Button -->
+        <button 
+          id="back-btn"
+          class="mb-8 flex items-center space-x-2 text-gray-600 hover:text-accent transition-colors font-medium group"
+        >
+          <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+          </div>
+          <span>Kategorilere Dön</span>
+        </button>
+
+        {categories.map((category) => (
+          <div id={category.id} class="category-content hidden animate-fade-in">
+            <div class="bg-white rounded-2xl p-8 shadow-sm mb-12 border-l-4 border-accent">
+              <h2 class="text-3xl font-serif font-bold text-gray-900">{category.title}</h2>
+            </div>
+
+            {category.subcategories.map((subcategory) => (
+              <div class="mb-16 last:mb-0">
+                {subcategory.title && (
+                  <div class="flex items-center space-x-4 mb-8">
+                    <h3 class="text-2xl font-serif font-bold text-gray-800">
+                      {subcategory.title}
+                    </h3>
+                    <div class="h-px bg-gray-200 flex-grow"></div>
+                  </div>
+                )}
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {subcategory.groups.map((group) => (
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col border border-gray-100">
+                      <div class="p-8 flex-grow">
+                        <h4 class="font-serif font-semibold text-lg mb-6 text-gray-900 border-b pb-4">
+                          {group.name}
+                        </h4>
+                        <ul class="space-y-3">
+                          {group.products.map((product) => (
+                            <li class="flex items-start space-x-3 text-gray-600 text-sm group/item hover:text-gray-900 transition-colors">
+                              <svg class="w-4 h-4 text-accent flex-shrink-0 mt-1 opacity-60 group-hover/item:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                              </svg>
+                              <span>{product}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <!-- PDF Catalogue Section -->
+            <div class="mt-16 pt-12 border-t border-gray-200">
+              <div class="flex items-center space-x-4 mb-8">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-serif font-bold text-gray-900">Ürün Kataloğu</h3>
+                  <p class="text-gray-500">Bu kategoriye ait detaylı ürün kataloğunu inceleyebilirsiniz.</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div 
+                  class="relative w-full h-[800px] bg-gray-100 pdf-viewer-container overflow-y-auto"
+                  data-pdf-path={category.pdf}
+                  oncontextmenu="return false;"
+                >
+                  <!-- Loading State -->
+                  <div class="pdf-loading absolute inset-0 flex flex-col items-center justify-center bg-gray-50 z-10">
+                    <div class="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-600 font-medium">Katalog yükleniyor...</p>
+                  </div>
+                  <!-- PDF Pages will be rendered here -->
+                  <div class="pdf-pages-wrapper flex flex-col items-center py-4 space-y-4"></div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4 border-t border-gray-100">
+                  <span class="text-sm text-gray-500">
+                    <span class="font-medium text-gray-900">Not:</span> Bu katalog yalnızca görüntüleme amaçlıdır. Sayfalar arasında gezinmek için kaydırın.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // View Switching Logic
+    const categoryGrid = document.getElementById('category-grid');
+    const productView = document.getElementById('product-view');
+    const backBtn = document.getElementById('back-btn');
+    const categoryCards = document.querySelectorAll('.category-card');
+    const categoryContents = document.querySelectorAll('.category-content');
+
+    function showCategoryById(targetId) {
+      if (!targetId) return;
+
+      // Hide Grid, Show Product View
+      categoryGrid?.classList.add('hidden');
+      productView?.classList.remove('hidden');
+
+      // Show specific category content
+      categoryContents.forEach(content => {
+        if (content.id === targetId) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Render PDF for the active category
+      setTimeout(() => {
+        const activeContent = document.getElementById(targetId);
+        const pdfContainer = activeContent?.querySelector('.pdf-viewer-container');
+        if (pdfContainer && typeof renderPDF === 'function') {
+          renderPDF(pdfContainer);
+        }
+      }, 50);
+    }
+
+    // Show Product View
+    categoryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const targetId = card.getAttribute('data-id');
+        showCategoryById(targetId);
+        if (targetId) {
+          window.location.hash = targetId;
+        }
+      });
+    });
+
+    // Back to Grid
+    backBtn?.addEventListener('click', () => {
+      productView?.classList.add('hidden');
+      categoryGrid?.classList.remove('hidden');
+      
+      // Reset category contents
+      categoryContents.forEach(content => content.classList.add('hidden'));
+      
+      // Remove hash and scroll to top
+      history.replaceState(null, '', window.location.pathname);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Handle direct navigation with hash (e.g., from home page links)
+    function handleHashNavigation() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        showCategoryById(hash);
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashNavigation);
+    handleHashNavigation();
+
+    // PDF.js Library
+    const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+
+    // Track which PDFs have been rendered
+    const renderedPDFs = new Set();
+
+    // Function to render PDF pages as canvas elements
+    async function renderPDF(container: HTMLElement) {
+      const pdfPath = container.getAttribute('data-pdf-path');
+      if (!pdfPath || renderedPDFs.has(pdfPath)) return;
+
+      renderedPDFs.add(pdfPath);
+      const loadingEl = container.querySelector('.pdf-loading');
+      const pagesWrapper = container.querySelector('.pdf-pages-wrapper');
+
+      try {
+        const pdf = await pdfjsLib.getDocument(pdfPath).promise;
+        const numPages = pdf.numPages;
+
+        // Render each page
+        for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          
+          // Calculate scale for good quality (2x for retina)
+          const scale = 2;
+          const viewport = page.getViewport({ scale });
+
+          // Create canvas for this page
+          const canvas = document.createElement('canvas');
+          canvas.className = 'pdf-page-canvas shadow-lg rounded-lg max-w-full';
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.style.width = `${viewport.width / scale}px`;
+          canvas.style.height = `${viewport.height / scale}px`;
+          // Prevent saving
+          canvas.oncontextmenu = () => false;
+
+          const context = canvas.getContext('2d');
+          await page.render({ canvasContext: context, viewport }).promise;
+
+          pagesWrapper?.appendChild(canvas);
+        }
+
+        // Hide loading state
+        loadingEl?.classList.add('hidden');
+      } catch (error) {
+        console.error('PDF render error:', error);
+        if (loadingEl) {
+          loadingEl.innerHTML = `
+            <svg class="w-12 h-12 text-red-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <p class="text-gray-600 font-medium">Katalog yüklenemedi</p>
+          `;
+        }
+      }
+    }
+
+    // Render PDF when category is shown
+    categoryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const targetId = card.getAttribute('data-id');
+        setTimeout(() => {
+          const activeContent = document.getElementById(targetId || '');
+          const pdfContainer = activeContent?.querySelector('.pdf-viewer-container') as HTMLElement;
+          if (pdfContainer) {
+            renderPDF(pdfContainer);
+          }
+        }, 100);
+      });
+    });
+  </script>
+
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hide PDF in print */
+    @media print {
+      .pdf-viewer-container {
+        display: none;
+      }
+    }
+
+    /* Prevent text/image selection in PDF viewer */
+    .pdf-viewer-container {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    .pdf-page-canvas {
+      pointer-events: none;
+    }
+
+    /* Custom scrollbar for PDF viewer */
+    .pdf-viewer-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .pdf-viewer-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    .pdf-viewer-container::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+    }
+
+    .pdf-viewer-container::-webkit-scrollbar-thumb:hover {
+      background: #a1a1a1;
+    }
+  </style>
+</Layout>
