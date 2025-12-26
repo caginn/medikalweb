@@ -435,9 +435,11 @@ const categories = [
       <!-- View 1: Category Grid -->
       <div id="category-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
         {categories.map((category) => (
-          <div 
-            class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer category-card"
+          <a 
+            href={`#${category.id}`}
+            class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer category-card"
             data-id={category.id}
+            aria-label={`${category.title} ürünlerini incele`}
           >
             <div class="relative h-64 overflow-hidden">
               <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors z-10"></div>
@@ -459,7 +461,7 @@ const categories = [
                 </svg>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
@@ -562,89 +564,20 @@ const categories = [
     </div>
   </section>
 
-  <script>
-    // View Switching Logic
+  <script type="module">
+    // View Switching Logic + PDF rendering
     const categoryGrid = document.getElementById('category-grid');
     const productView = document.getElementById('product-view');
     const backBtn = document.getElementById('back-btn');
-    const categoryCards = document.querySelectorAll('.category-card');
     const categoryContents = document.querySelectorAll('.category-content');
 
-    function showCategoryById(targetId) {
-      if (!targetId) return;
-
-      // Hide Grid, Show Product View
-      categoryGrid?.classList.add('hidden');
-      productView?.classList.remove('hidden');
-
-      // Show specific category content
-      categoryContents.forEach(content => {
-        if (content.id === targetId) {
-          content.classList.remove('hidden');
-        } else {
-          content.classList.add('hidden');
-        }
-      });
-
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Render PDF for the active category
-      setTimeout(() => {
-        const activeContent = document.getElementById(targetId);
-        const pdfContainer = activeContent?.querySelector('.pdf-viewer-container');
-        if (pdfContainer && typeof renderPDF === 'function') {
-          renderPDF(pdfContainer);
-        }
-      }, 50);
-    }
-
-    // Show Product View
-    categoryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const targetId = card.getAttribute('data-id');
-        showCategoryById(targetId);
-        if (targetId) {
-          window.location.hash = targetId;
-        }
-      });
-    });
-
-    // Back to Grid
-    backBtn?.addEventListener('click', () => {
-      productView?.classList.add('hidden');
-      categoryGrid?.classList.remove('hidden');
-      
-      // Reset category contents
-      categoryContents.forEach(content => content.classList.add('hidden'));
-      
-      // Remove hash and scroll to top
-      history.replaceState(null, '', window.location.pathname);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Handle direct navigation with hash (e.g., from home page links)
-    function handleHashNavigation() {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        showCategoryById(hash);
-      }
-    }
-
-    window.addEventListener('hashchange', handleHashNavigation);
-    handleHashNavigation();
-
-    // PDF.js Library
-    const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-
-    // Track which PDFs have been rendered
+    let pdfjsLib;
     const renderedPDFs = new Set();
 
-    // Function to render PDF pages as canvas elements
-    async function renderPDF(container: HTMLElement) {
+    async function renderPDF(container) {
+      if (!container) return;
       const pdfPath = container.getAttribute('data-pdf-path');
-      if (!pdfPath || renderedPDFs.has(pdfPath)) return;
+      if (!pdfPath || renderedPDFs.has(pdfPath) || !pdfjsLib) return;
 
       renderedPDFs.add(pdfPath);
       const loadingEl = container.querySelector('.pdf-loading');
@@ -654,31 +587,24 @@ const categories = [
         const pdf = await pdfjsLib.getDocument(pdfPath).promise;
         const numPages = pdf.numPages;
 
-        // Render each page
         for (let pageNum = 1; pageNum <= numPages; pageNum++) {
           const page = await pdf.getPage(pageNum);
-          
-          // Calculate scale for good quality (2x for retina)
           const scale = 2;
           const viewport = page.getViewport({ scale });
 
-          // Create canvas for this page
           const canvas = document.createElement('canvas');
           canvas.className = 'pdf-page-canvas shadow-lg rounded-lg max-w-full';
           canvas.width = viewport.width;
           canvas.height = viewport.height;
           canvas.style.width = `${viewport.width / scale}px`;
           canvas.style.height = `${viewport.height / scale}px`;
-          // Prevent saving
           canvas.oncontextmenu = () => false;
 
           const context = canvas.getContext('2d');
           await page.render({ canvasContext: context, viewport }).promise;
-
           pagesWrapper?.appendChild(canvas);
         }
 
-        // Hide loading state
         loadingEl?.classList.add('hidden');
       } catch (error) {
         console.error('PDF render error:', error);
@@ -693,19 +619,60 @@ const categories = [
       }
     }
 
-    // Render PDF when category is shown
-    categoryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const targetId = card.getAttribute('data-id');
-        setTimeout(() => {
-          const activeContent = document.getElementById(targetId || '');
-          const pdfContainer = activeContent?.querySelector('.pdf-viewer-container') as HTMLElement;
-          if (pdfContainer) {
-            renderPDF(pdfContainer);
-          }
-        }, 100);
+    function showCategoryById(targetId) {
+      if (!targetId) return;
+
+      categoryGrid?.classList.add('hidden');
+      productView?.classList.remove('hidden');
+
+      categoryContents.forEach((content) => {
+        if (content.id === targetId) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
       });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Render PDF for the active category (best-effort)
+      setTimeout(() => {
+        const activeContent = document.getElementById(targetId);
+        const pdfContainer = activeContent?.querySelector('.pdf-viewer-container');
+        if (pdfContainer) renderPDF(pdfContainer);
+      }, 50);
+    }
+
+    backBtn?.addEventListener('click', () => {
+      productView?.classList.add('hidden');
+      categoryGrid?.classList.remove('hidden');
+      categoryContents.forEach((content) => content.classList.add('hidden'));
+      history.replaceState(null, '', window.location.pathname);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    function handleHashNavigation() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) showCategoryById(hash);
+    }
+
+    window.addEventListener('hashchange', handleHashNavigation);
+    handleHashNavigation();
+
+    // Load PDF.js (module) after the view wiring is ready
+    try {
+      pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+      // If we landed directly on a hash route, render its PDF now.
+      const activeId = window.location.hash.replace('#', '');
+      if (activeId) {
+        const activeContent = document.getElementById(activeId);
+        const pdfContainer = activeContent?.querySelector('.pdf-viewer-container');
+        if (pdfContainer) renderPDF(pdfContainer);
+      }
+    } catch (e) {
+      console.warn('PDF.js failed to load:', e);
+    }
   </script>
 
   <style>
