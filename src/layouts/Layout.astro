@@ -34,8 +34,8 @@ const base = import.meta.env.BASE_URL;
             <a href={`${base}products`} class="text-gray-700 hover:text-accent transition-colors font-medium">Ürünlerimiz</a>
             <a href={`${base}contact`} class="btn-primary">İletişim</a>
             <div class="flex items-center bg-gray-100 rounded-full p-1 text-sm font-medium">
-              <button data-lang-switch="tr" class="lang-toggle-btn px-3 py-1 rounded-full bg-white text-gray-900 shadow">TR</button>
-              <button data-lang-switch="en" class="lang-toggle-btn px-3 py-1 rounded-full text-gray-700 hover:text-accent">EN</button>
+              <button onclick="switchLang('tr')" id="lang-tr" class="lang-toggle-btn px-3 py-1 rounded-full bg-white text-gray-900 shadow">TR</button>
+              <button onclick="switchLang('en')" id="lang-en" class="lang-toggle-btn px-3 py-1 rounded-full text-gray-700 hover:text-accent">EN</button>
             </div>
           </div>
 
@@ -55,8 +55,8 @@ const base = import.meta.env.BASE_URL;
             <a href={`${base}products`} class="text-gray-700 hover:text-accent transition-colors font-medium py-2">Ürünlerimiz</a>
             <a href={`${base}contact`} class="btn-primary text-center">İletişim</a>
             <div class="flex items-center space-x-2 pt-2">
-              <button data-lang-switch="tr" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-200 text-gray-900">TR</button>
-              <button data-lang-switch="en" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-100 text-gray-700">EN</button>
+              <button onclick="switchLang('tr')" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-200 text-gray-900">TR</button>
+              <button onclick="switchLang('en')" class="lang-toggle-btn px-3 py-1 rounded-full bg-gray-100 text-gray-700">EN</button>
             </div>
           </div>
         </div>
@@ -131,89 +131,28 @@ const base = import.meta.env.BASE_URL;
     </footer>
 
     <!-- Mobile Menu Script -->
-    <script>
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      mobileMenuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
+    <script is:inline>
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+        document.getElementById('mobile-menu')?.classList.toggle('hidden');
       });
 
-      // Language Toggle Logic (Google Translate)
-      const langButtons = document.querySelectorAll('[data-lang-switch]');
-
-      function setActiveLang(lang) {
-        langButtons.forEach((btn) => {
-          const isActive = btn.getAttribute('data-lang-switch') === lang;
-          btn.classList.toggle('bg-white', isActive);
-          btn.classList.toggle('bg-gray-200', !isActive);
-          btn.classList.toggle('text-gray-900', isActive);
-          btn.classList.toggle('text-gray-700', !isActive);
-          btn.classList.toggle('shadow', isActive);
-        });
-      }
-
-      // Check if we're already on a translated page
-      function isTranslatedPage() {
-        return window.location.hostname.includes('translate.goog');
-      }
-
-      // Get the original URL (works whether we're on translated or original page)
-      function getOriginalUrl() {
-        if (isTranslatedPage()) {
-          // Extract original URL from Google Translate URL
-          const params = new URLSearchParams(window.location.search);
-          const originalUrl = params.get('_x_tr_sl') ? 
-            window.location.href.replace(/translate\.goog.*?\?/, '').split('&_x_tr')[0] :
-            window.location.origin.replace('.translate.goog', '').replace('-', '.');
-          // Reconstruct from pathname
-          const path = window.location.pathname;
-          return `https://sysaglik.com.tr${path}`;
-        }
-        return window.location.href;
-      }
-
-      function applyLanguage(lang) {
-        try {
-          localStorage.setItem('siteLang', lang);
-        } catch (e) {}
+      // Language switch - global function for onclick handlers
+      window.switchLang = function(lang) {
+        console.log('Switching to:', lang);
         
-        setActiveLang(lang);
-
         if (lang === 'en') {
           // Redirect to Google Translate
-          if (!isTranslatedPage()) {
-            const currentUrl = window.location.href;
-            const translateUrl = `https://translate.google.com/translate?sl=tr&tl=en&u=${encodeURIComponent(currentUrl)}`;
-            window.location.href = translateUrl;
-          }
+          var currentUrl = window.location.href;
+          var translateUrl = 'https://translate.google.com/translate?sl=tr&tl=en&u=' + encodeURIComponent(currentUrl);
+          window.location.href = translateUrl;
         } else {
-          // Go back to original Turkish site
-          if (isTranslatedPage()) {
-            window.location.href = getOriginalUrl();
+          // For TR, check if we're on translated page and go back
+          if (window.location.hostname.includes('translate.goog')) {
+            window.location.href = 'https://sysaglik.com.tr' + window.location.pathname;
           }
         }
-      }
-
-      // Initialize language buttons
-      langButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lang = btn.getAttribute('data-lang-switch');
-          if (lang) applyLanguage(lang);
-        });
-      });
-
-      // Set correct active state on page load
-      if (isTranslatedPage()) {
-        setActiveLang('en');
-      } else {
-        // Check localStorage for preference
-        let saved = null;
-        try {
-          saved = localStorage.getItem('siteLang');
-        } catch (e) {}
-        setActiveLang(saved === 'en' ? 'en' : 'tr');
-      }
+      };
     </script>
   </body>
 </html>
