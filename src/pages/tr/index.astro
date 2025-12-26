@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Ana Sayfa">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2000&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-white/90"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block px-4 py-1 bg-red-100 text-accent rounded-full text-sm font-medium mb-6">
+            Sağlıkta Güvenilir Çözüm Ortağınız
+          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight mb-6">
+            Tek Kullanımlık <span class="text-accent">Medikal Ürünler</span>
+          </h1>
+          <p class="text-lg text-gray-600 mb-8 max-w-lg">
+            SY Sağlık Ürünleri olarak, sağlık sektörüne yüksek kaliteli ve güvenilir 
+            tek kullanımlık medikal ürünler sunuyoruz. Hijyen ve kalite standartlarında 
+            taviz vermeden hizmet veriyoruz.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/tr/products" class="btn-primary">Ürünlerimizi Keşfedin</a>
+            <a href="/tr/contact" class="btn-outline">İletişime Geçin</a>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="bg-gradient-to-br from-accent to-accent-dark rounded-2xl p-8 text-white shadow-2xl">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="text-center p-4 bg-white/10 rounded-xl">
+                <div class="text-4xl font-bold mb-1">35+</div>
+                <div class="text-sm opacity-90">Yıllık Deneyim</div>
+              </div>
+              <div class="text-center p-4 bg-white/10 rounded-xl">
+                <div class="text-4xl font-bold mb-1">500+</div>
+                <div class="text-sm opacity-90">Müşteri</div>
+              </div>
+              <div class="text-center p-4 bg-white/10 rounded-xl">
+                <div class="text-4xl font-bold mb-1">50+</div>
+                <div class="text-sm opacity-90">Ürün Çeşidi</div>
+              </div>
+              <div class="text-center p-4 bg-white/10 rounded-xl">
+                <div class="text-4xl font-bold mb-1">%100</div>
+                <div class="text-sm opacity-90">Müşteri Memnuniyeti</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Neden Bizi Tercih Etmelisiniz?</h2>
+        <p class="section-subtitle mx-auto">
+          Sağlık sektöründe kalite ve güvenin adresi olarak, size en iyi hizmeti sunuyoruz.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="group p-8 bg-gray-50 rounded-2xl hover:bg-accent transition-colors duration-300">
+          <div class="w-14 h-14 bg-accent group-hover:bg-white rounded-xl flex items-center justify-center mb-6 transition-colors">
+            <svg class="w-7 h-7 text-white group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Yüksek Kalite</h3>
+          <p class="text-gray-600 group-hover:text-white/90 transition-colors">
+            Tüm ürünlerimiz uluslararası kalite standartlarına uygun olarak üretilmektedir.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group p-8 bg-gray-50 rounded-2xl hover:bg-accent transition-colors duration-300">
+          <div class="w-14 h-14 bg-accent group-hover:bg-white rounded-xl flex items-center justify-center mb-6 transition-colors">
+            <svg class="w-7 h-7 text-white group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Steril Üretim</h3>
+          <p class="text-gray-600 group-hover:text-white/90 transition-colors">
+            Modern ve steril üretim tesislerimizde hijyen standartlarında taviz vermiyoruz.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group p-8 bg-gray-50 rounded-2xl hover:bg-accent transition-colors duration-300">
+          <div class="w-14 h-14 bg-accent group-hover:bg-white rounded-xl flex items-center justify-center mb-6 transition-colors">
+            <svg class="w-7 h-7 text-white group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Hızlı Teslimat</h3>
+          <p class="text-gray-600 group-hover:text-white/90 transition-colors">
+            Geniş stok ağımız sayesinde siparişlerinizi en kısa sürede teslim ediyoruz.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Preview Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Ürün Kategorilerimiz</h2>
+        <p class="section-subtitle mx-auto">
+          Geniş ürün yelpazemiz ile sağlık sektörünün tüm ihtiyaçlarını karşılıyoruz.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- ANAESTHESIOLOGY -->
+        <a href="/tr/products#anaesthesiology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+          <div class="h-48 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=800&auto=format&fit=crop" alt="ANAESTHESIOLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">ANAESTHESIOLOGY</h3>
+            <p class="text-gray-600 text-sm">Epidural, spinal ve anestezi çözümleri</p>
+          </div>
+        </a>
+
+        <!-- CARDIOLOGY AND RADIOLOGY -->
+        <a href="/tr/products#cardiology-radiology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+          <div class="h-48 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=800&auto=format&fit=crop" alt="CARDIOLOGY AND RADIOLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">CARDIOLOGY AND RADIOLOGY</h3>
+            <p class="text-gray-600 text-sm">Stentler, kateterler ve girişimsel çözümler</p>
+          </div>
+        </a>
+
+        <!-- DIALYSIS -->
+        <a href="/tr/products#dialysis" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+          <div class="h-48 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop" alt="DIALYSIS" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">DIALYSIS</h3>
+            <p class="text-gray-600 text-sm">Hemodiyaliz setleri ve kateterleri</p>
+          </div>
+        </a>
+
+        <!-- UROLOGY -->
+        <a href="/tr/products#urology" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+          <div class="h-48 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop" alt="UROLOGY" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">UROLOGY</h3>
+            <p class="text-gray-600 text-sm">Nefrostomi ve stent çözümleri</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/tr/products" class="btn-primary">Tüm Ürünleri Görüntüle</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
