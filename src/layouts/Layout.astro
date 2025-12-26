@@ -16,7 +16,17 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <style>
-      #google_translate_element { display: none; }
+      /* Google Translate needs this element to exist and NOT be display:none */
+      #google_translate_element {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
       .goog-te-banner-frame { display: none !important; }
       body { top: 0 !important; }
     </style>
@@ -174,6 +184,21 @@ const base = import.meta.env.BASE_URL;
 
       function applyLanguage(lang) {
         waitForGoogleTranslate((select) => {
+          // Best-effort: set the cookie Google Translate relies on.
+          const maxAge = 60 * 60 * 24 * 365; // 1 year
+          const cookieValue = lang === 'tr' ? '/tr/tr' : `/tr/${lang}`;
+          try {
+            document.cookie = `googtrans=${cookieValue};path=/;max-age=${maxAge}`;
+            const parts = window.location.hostname.split('.');
+            if (parts.length >= 2) {
+              const root = `.${parts.slice(-2).join('.')}`;
+              document.cookie = `googtrans=${cookieValue};path=/;max-age=${maxAge};domain=${root}`;
+            }
+            localStorage.setItem('siteLang', lang);
+          } catch (e) {
+            // ignore
+          }
+
           select.value = lang;
           select.dispatchEvent(new Event('change'));
           setActiveLang(lang);
@@ -199,8 +224,23 @@ const base = import.meta.env.BASE_URL;
           'google_translate_element'
         );
       };
+
+      // Restore language choice (if previously set)
+      waitForGoogleTranslate((select) => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem('siteLang');
+        } catch (e) {
+          saved = null;
+        }
+        if (saved && saved !== 'tr') {
+          applyLanguage(saved);
+        } else {
+          setActiveLang('tr');
+        }
+      });
     </script>
-    <div id="google_translate_element" class="hidden"></div>
+    <div id="google_translate_element"></div>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
